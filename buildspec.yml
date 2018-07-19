@@ -3,6 +3,8 @@ version: 0.2
 phases:
   pre_build:
     commands:
+      - echo mvn version
+      - mvn -version
       - echo Logging in to Amazon ECR...
       - $(aws ecr get-login --no-include-email --region ap-southeast-1)
   build:
@@ -10,7 +12,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...          
       - docker build -t myrepo:latest .
-      - docker tag myrepo:latest 139379777393.dkr.ecr.ap-southeast-1.amazonaws.com/myrepo:latest      
+      - docker tag myrepo:latest 139379777393.dkr.ecr.ap-southeast-1.amazonaws.com/myrepo:latest
   post_build:
     commands:
       - echo Build completed on `date`
